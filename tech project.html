@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Anniversary na ka aomaam 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fbeaff, #ffe8f0);
+      font-family: 'Quicksand', sans-serif;
+      color: #5e3a73;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5em;
+      color: #d63384;
+      margin-bottom: 0.2em;
+      animation: fadeIn 2s ease-in-out;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: 10px auto;
+      line-height: 1.6;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .timer {
+      font-size: 1.2em;
+      margin-top: 1em;
+      color: #8e44ad;
+      animation: fadeIn 4s ease-in-out;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+      animation: float 6s infinite ease-in;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>💗 Happy Anniversary na ka aomaam 💗</h1>
+
+  <p>
+    The time we've spent together has been full of beautiful moments, some perfect and some imperfect. But every single day, I've tried my best to be better for you. Thank you for staying by my side. It truly means the world to me. 💖
+  </p>
+
+  <div class="timer" id="timer"></div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/mb4avj8jwncqgzzumq2xt/Photograph-EdSheeran.mp3?rlkey=w4ugwdwl3o0sljk2h8xjq7zgc&dl=1" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const startDate = new Date('2024-11-22T00:00:00');
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerEl.textContent = `We've been together for ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds 💕`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Hearts Floating
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createHeart, 500);
+
+    // Try to play music on page load (some browsers require user interaction)
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bg-music');
+      music.play().catch(() => {
+        // Autoplay might be blocked, no fallback here to keep it simple
+      });
+    });
+  </script>
+</body>
+</html>
